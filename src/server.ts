@@ -18,6 +18,8 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api", protect, router);
+
+// user auth routes
 app.post("/user", createNewUser);
 app.post("/signin", signin);
 

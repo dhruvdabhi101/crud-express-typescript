@@ -20,6 +20,7 @@ export const createNewUser = async (req: Request, res: Response) => {
   }
 };
 
+// signing in the user and sending JWT Token
 export const signin = async (req: any, res: any) => {
   const data = await prisma.user.findUnique({
     where: {
