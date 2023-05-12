@@ -1,33 +1,39 @@
 import { Request, Response, Router } from "express";
 import { body, oneOf, validationResult } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
+import {
+  createProduct,
+  deleteProduct,
+  getOneProduct,
+  getProducts,
+  updateProduct,
+} from "./handler/product";
+import { deepStrictEqual } from "assert";
 
 const router = Router();
 /**
  *Product
  */
 
-router.get("/product", (req, res) => {
-  res.json({ message: req.body.name });
-});
-router.get("/product/:id", () => {});
+router.get("/product", getProducts);
+router.get("/product/:id", getOneProduct);
 router.put(
   "/product/:id",
   body("name").isString(),
   handleInputErrors,
-  (req, res) => {}
+  updateProduct
 );
 router.post(
   "/product",
   body("name").isString(),
   handleInputErrors,
-  (req, res) => {}
+  createProduct
 );
 router.delete(
   "/product/:id",
   body("id").isString(),
   handleInputErrors,
-  (req, res) => {}
+  deleteProduct
 );
 
 /**
@@ -55,7 +61,7 @@ router.post(
 router.delete("/update/:id", () => {});
 
 /**
- * Update
+ * Updatepoint
  */
 
 router.get("/updatepoint", () => {});
